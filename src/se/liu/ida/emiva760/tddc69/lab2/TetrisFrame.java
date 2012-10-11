@@ -47,6 +47,7 @@ public class TetrisFrame extends JFrame {
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Ask for confirmation
                 int confirmExit = JOptionPane.showConfirmDialog(null,
                         "Are you sure you want to exit?", "User Confirmation",
                         JOptionPane.YES_NO_OPTION);
