@@ -2,6 +2,8 @@ package se.liu.ida.emiva760.tddc69.lab2;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TetrisFrame extends JFrame {
 
@@ -14,12 +16,12 @@ public class TetrisFrame extends JFrame {
         this.board = board;
 
         createGUI();
+        createMenu();
         textArea.setEditable(false);
         insertText();
 
         pack(); // adapts the size of the window
         setVisible(true); // shows the window
-        setDefaultCloseOperation(EXIT_ON_CLOSE); // close the application
     }
 
     private void createGUI() {
@@ -35,5 +37,27 @@ public class TetrisFrame extends JFrame {
 
     public void updateText() {
         insertText();
+    }
+
+    private void createMenu() {
+        final JMenu menu = new JMenu("Menu");
+
+        final JMenuItem exit = new JMenuItem("Exit");
+        menu.add(exit);
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int confirmExit = JOptionPane.showConfirmDialog(null,
+                        "Are you sure you want to exit?", "User Confirmation",
+                        JOptionPane.YES_NO_OPTION);
+                if (confirmExit == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
+
+        final JMenuBar bar = new JMenuBar();
+        bar.add(menu);
+        setJMenuBar(bar);
     }
 }
