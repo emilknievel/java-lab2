@@ -6,6 +6,8 @@ import java.awt.*;
 public class GraphicalViewer extends JComponent {
     private static final int WIDTH = 350;
     private static final int HEIGHT = 700;
+    private static final int BLOCKWIDTH = WIDTH/10;
+    private static final int BLOCKHEIGHT = HEIGHT/20;
 
     private final Board board;
 
@@ -20,25 +22,36 @@ public class GraphicalViewer extends JComponent {
     public void paintComponent(final Graphics g) {
         final Graphics2D g2 = (Graphics2D) g;
         paintBackground(g2);
-        //paintPlacedBlock(g2);
-        //paintFallingBlock(g2);
+        paintBlocks(g2);
     }
 
     public void paintBackground(final Graphics2D g2) {
-        g2.setColor(Color.WHITE);
+        g2.setColor(Color.BLACK);
         g2.fill(new Rectangle(0, 0, WIDTH, HEIGHT));
     }
 
-    public void paintPlacedBlock(final Graphics2D g2) {
-
+    public void paintBlocks(final Graphics2D g2) {
+        for (int i = 0; i < board.getRows(); i++) {
+            for (int j = 0; j < board.getColumns(); j++) {
+                if (board.existPoly(i, j) && board.getFallingSquareColor(i, j) != null) {
+                    int blockY = i*BLOCKHEIGHT;
+                    int blockX = j*BLOCKWIDTH;
+                    g2.fill(new Rectangle(blockX, blockY, BLOCKWIDTH, BLOCKHEIGHT));
+                } else {
+                    g2.setColor(convertToColor(board.getSquareColor(i, j)));
+                    int blockY = i*BLOCKHEIGHT;
+                    int blockX = j*BLOCKWIDTH;
+                    g2.fill(new Rectangle(blockX, blockY, BLOCKWIDTH, BLOCKHEIGHT));
+                }
+            }
+        }
     }
 
-    public void paintFallingBlock(final Graphics2D g2) {
-
-    }
 
     // How to know what color to draw for every SquareColor
     public Color convertToColor(SquareColor c) {
+        if(c == null) return Color.BLACK;
+        else
         switch (c) {
             case BLUE:
                 return Color.BLUE;
@@ -47,7 +60,7 @@ public class GraphicalViewer extends JComponent {
             case YELLOW:
                 return Color.YELLOW;
             default:
-                return Color.WHITE;
+                return Color.BLACK;
         }
     }
 }

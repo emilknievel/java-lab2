@@ -17,75 +17,65 @@ public class TetrominoMaker {
 
         SquareColor[][] tet = new SquareColor[4][4];
 
-        /*
-          #
-          #
-          #
-          #
-        */
-        if (type == 0) {
-            makeTet1(tet);
+        switch (type) {
+            case 0:
+                /*
+                  #
+                  #
+                  #
+                  #
+                */
+                makeTet1(tet);
+            case 1:
+                /*
+
+
+                  ##
+                  ##
+                */
+                makeTet2(tet);
+            case 2:
+                /*
+
+                  #
+                  #
+                  ##
+                */
+                makeTet3(tet);
+            case 3:
+                /*
+
+                   #
+                   #
+                  ##
+                */
+                makeTet4(tet);
+            case 4:
+                /*
+
+
+                   #
+                  ###
+                */
+                makeTet5(tet);
+            case 5:
+                /*
+
+                  #
+                  ##
+                   #
+                */
+                makeTet6(tet);
+            case 6:
+                /*
+
+                   #
+                  ##
+                  #
+                */
+                makeTet7(tet);
         }
 
-        /*
-
-
-          ##
-          ##
-        */
-        else if (type == 1) {
-            makeTet2(tet);
-        }
-
-        /*
-
-          #
-          #
-          ##
-        */
-        else if (type == 2) {
-            makeTet3(tet);
-        }
-
-        /*
-
-           #
-           #
-          ##
-        */
-        else if (type == 3) {
-            makeTet4(tet);
-        }
-
-        /*
-
-
-           #
-          ###
-        */
-        else if (type == 4) {
-            makeTet5(tet);
-        }
-
-        /*
-
-          #
-          ##
-           #
-        */
-        else if (type == 5) {
-            makeTet6(tet);
-        }
-
-        /*
-
-           #
-          ##
-          #
-        */
-        else if (type == 6) {
-            makeTet7(tet);
-        }
         return tet;
     }
 

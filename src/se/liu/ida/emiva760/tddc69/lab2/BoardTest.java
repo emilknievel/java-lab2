@@ -6,25 +6,15 @@ import java.util.Random;
 
 public class BoardTest {
     public static void main(String[] args) {
-        // Old
-        /*for (int i = 0; i < 10; i++) {
-            Board board = new Board(20, 10);
 
-            addRandomSquareColors(board);
-
-            System.out.println(TextViewer.convertToText(board));
-        }*/
-
-        // New
         final Board board = new Board(20, 10);
-        //addRandomSquareColors(board);
         final TetrisFrame gameFrame = new TetrisFrame(board);
 
         final Action doOneStep = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 // Gå ett steg i spelet!
                 addRandomSquareColors(board);
-                gameFrame.updateText();
+                gameFrame.repaint();
             }
         };
 

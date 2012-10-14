@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class TetrisFrame extends JFrame {
 
     private Board board;
-    private JTextArea textArea;
+    private GraphicalViewer graphics;
 
     // Constructor
     public TetrisFrame(Board board) {
@@ -17,26 +17,16 @@ public class TetrisFrame extends JFrame {
 
         createGUI();
         createMenu();
-        textArea.setEditable(false);
-        insertText();
 
         pack(); // adapts the size of the window
         setVisible(true); // shows the window
     }
 
     private void createGUI() {
-        setLayout(new BorderLayout());
-        this.textArea = new JTextArea(board.getRows(), board.getColumns());
-
-        add(this.textArea, BorderLayout.CENTER);
-    }
-
-    private void insertText() {
-        textArea.setText(TextViewer.convertToText(board));
-    }
-
-    public void updateText() {
-        insertText();
+    setLayout(new BorderLayout());
+        graphics = new GraphicalViewer(this.board);
+        add(graphics, BorderLayout.CENTER);
+        graphics.repaint();
     }
 
     private void createMenu() {
