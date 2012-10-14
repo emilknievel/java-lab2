@@ -14,7 +14,7 @@ public class BoardTest {
             public void actionPerformed(ActionEvent e) {
                 // Gå ett steg i spelet!
                 addRandomSquareColors(board);
-                gameFrame.repaint();
+                //gameFrame.repaint();
             }
         };
 
@@ -39,6 +39,7 @@ public class BoardTest {
                 obj.addSquareColor(r, c, randomSquareColor());
             }
         }
+        obj.update();
     }
     // -----------------------------------------------------------------------
 }

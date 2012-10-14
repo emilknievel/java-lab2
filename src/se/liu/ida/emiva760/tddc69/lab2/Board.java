@@ -1,10 +1,12 @@
 package se.liu.ida.emiva760.tddc69.lab2;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Board {
     private int rows = 20;
     private int columns = 10;
+    private final ArrayList<BoardListener> BoardListenerList = new ArrayList<BoardListener>();
 
     private int polyTypes = new Random().nextInt(TetrominoMaker.getNumberOfTypes());
 
@@ -46,6 +48,7 @@ public class Board {
         return poly.getPolySquares();
     }
 
+    // Is there a polyomino?
     public boolean existPoly(int row, int column) {
         // Check collision with "bounding box"
         if ((column > polyXCoord + polyWidth() - 1)     ||
@@ -58,6 +61,20 @@ public class Board {
     }
 
     public SquareColor getFallingSquareColor(int row, int column) {
-            return getPolySquares()[row - polyYCoord][column - polyXCoord];
+        return getPolySquares()[row - polyYCoord][column - polyXCoord];
+    }
+
+    public void addBoardListener(BoardListener b1) {
+        BoardListenerList.add(b1);
+    }
+
+    private void notifyListeners() {
+        for (BoardListener b1 : BoardListenerList) {
+            b1.boardChanged();
+        }
+    }
+
+    public void update() {
+        notifyListeners();
     }
 }

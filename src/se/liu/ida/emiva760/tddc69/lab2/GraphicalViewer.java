@@ -3,7 +3,7 @@ package se.liu.ida.emiva760.tddc69.lab2;
 import javax.swing.*;
 import java.awt.*;
 
-public class GraphicalViewer extends JComponent {
+public class GraphicalViewer extends JComponent implements BoardListener {
     private static final int WIDTH = 350;
     private static final int HEIGHT = 700;
     private static final int BLOCKWIDTH = WIDTH/10;
@@ -13,6 +13,7 @@ public class GraphicalViewer extends JComponent {
 
     public GraphicalViewer(Board board) {
         this.board = board;
+        board.addBoardListener(this);
     }
 
     public Dimension getPreferredSize() {
@@ -47,7 +48,6 @@ public class GraphicalViewer extends JComponent {
         }
     }
 
-
     // How to know what color to draw for every SquareColor
     public Color convertToColor(SquareColor c) {
         if(c == null) return Color.BLACK;
@@ -62,5 +62,10 @@ public class GraphicalViewer extends JComponent {
             default:
                 return Color.BLACK;
         }
+
+    }
+
+    public void boardChanged() {
+        this.repaint();
     }
 }
