@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 
 public class TetrisFrame extends JFrame {
 
-    private Board board;
+    private final Board board;
     private GraphicalViewer graphics;
 
     // Constructor
-    public TetrisFrame(Board board) {
+    public TetrisFrame(final Board board) {
         super("Game board");
         this.board = board;
 
@@ -20,6 +20,29 @@ public class TetrisFrame extends JFrame {
 
         pack(); // adapts the size of the window
         setVisible(true); // shows the window
+
+        final Action goLeft = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!board.collidesLeft()) {
+                    board.moveLeft();
+                }
+            }
+        };
+
+        final Action goRight = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!board.collidesRight()) {
+                    board.moveRight();
+                }
+            }
+        };
+
+        graphics.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "goLeft");
+        graphics.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "goRight");
+        graphics.getActionMap().put("goLeft", goLeft);
+        graphics.getActionMap().put("goRight", goRight);
     }
 
     private void createGUI() {
@@ -51,4 +74,5 @@ public class TetrisFrame extends JFrame {
         bar.add(menu);
         setJMenuBar(bar);
     }
+
 }

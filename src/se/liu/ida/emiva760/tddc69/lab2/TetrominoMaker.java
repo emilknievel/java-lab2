@@ -26,6 +26,7 @@ public class TetrominoMaker {
                   #
                 */
                 makeTet1(tet);
+                break;
             case 1:
                 /*
 
@@ -34,6 +35,7 @@ public class TetrominoMaker {
                   ##
                 */
                 makeTet2(tet);
+                break;
             case 2:
                 /*
 
@@ -42,6 +44,7 @@ public class TetrominoMaker {
                   ##
                 */
                 makeTet3(tet);
+                break;
             case 3:
                 /*
 
@@ -50,6 +53,7 @@ public class TetrominoMaker {
                   ##
                 */
                 makeTet4(tet);
+                break;
             case 4:
                 /*
 
@@ -58,6 +62,7 @@ public class TetrominoMaker {
                   ###
                 */
                 makeTet5(tet);
+                break;
             case 5:
                 /*
 
@@ -66,6 +71,7 @@ public class TetrominoMaker {
                    #
                 */
                 makeTet6(tet);
+                break;
             case 6:
                 /*
 
@@ -74,6 +80,7 @@ public class TetrominoMaker {
                   #
                 */
                 makeTet7(tet);
+                break;
         }
 
         return tet;

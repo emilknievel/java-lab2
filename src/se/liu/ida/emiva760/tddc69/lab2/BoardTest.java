@@ -2,7 +2,6 @@ package se.liu.ida.emiva760.tddc69.lab2;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.util.Random;
 
 public class BoardTest {
     public static void main(String[] args) {
@@ -13,12 +12,15 @@ public class BoardTest {
         final Action doOneStep = new AbstractAction() {
             public void actionPerformed(ActionEvent e) {
                 // Gå ett steg i spelet!
-                addRandomSquareColors(board);
-                //gameFrame.repaint();
+                if (!board.fail()) {
+                    board.tick();
+                } else {
+                    System.exit(0);
+                }
             }
         };
 
-        final Timer clockTimer = new Timer(1000, doOneStep);
+        final Timer clockTimer = new Timer(300, doOneStep);
         clockTimer.setCoalesce(true);
         clockTimer.start();
         clockTimer.setLogTimers(true);
@@ -26,7 +28,7 @@ public class BoardTest {
 
     // Board functions:
     // -----------------------------------------------------------------------
-    public static SquareColor randomSquareColor() {
+    /*public static SquareColor randomSquareColor() {
         int randomNo = new Random().nextInt(4);
         if (randomNo != 3) {
             return SquareColor.values()[randomNo];
@@ -40,6 +42,7 @@ public class BoardTest {
             }
         }
         obj.update();
-    }
+    }*/
     // -----------------------------------------------------------------------
+
 }

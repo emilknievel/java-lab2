@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GraphicalViewer extends JComponent implements BoardListener {
-    private static final int WIDTH = 350;
-    private static final int HEIGHT = 700;
+    private static final int WIDTH = 330;
+    private static final int HEIGHT = 660;
     private static final int BLOCKWIDTH = WIDTH/10;
     private static final int BLOCKHEIGHT = HEIGHT/20;
 
@@ -31,10 +31,12 @@ public class GraphicalViewer extends JComponent implements BoardListener {
         g2.fill(new Rectangle(0, 0, WIDTH, HEIGHT));
     }
 
+    // If there is a poly, paint it. Otherwise paint the static blocks
     public void paintBlocks(final Graphics2D g2) {
         for (int i = 0; i < board.getRows(); i++) {
             for (int j = 0; j < board.getColumns(); j++) {
                 if (board.existPoly(i, j) && board.getFallingSquareColor(i, j) != null) {
+                    g2.setColor(convertToColor(board.getFallingSquareColor(i, j)));
                     int blockY = i*BLOCKHEIGHT;
                     int blockX = j*BLOCKWIDTH;
                     g2.fill(new Rectangle(blockX, blockY, BLOCKWIDTH, BLOCKHEIGHT));
