@@ -39,6 +39,7 @@ public class TetrisFrame extends JFrame {
             }
         };
 
+        // Get input from the keyboard and the action to be used
         graphics.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "goLeft");
         graphics.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "goRight");
         graphics.getActionMap().put("goLeft", goLeft);

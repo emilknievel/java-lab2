@@ -42,9 +42,10 @@ public class Board {
         return array[row][column];
     }
 
-    public void addSquareColor(int row, int column, SquareColor color) {
+    // Was used to test that the SquareColors were painted
+    /*public void addSquareColor(int row, int column, SquareColor color) {
         array[row][column] = color;
-    }
+    }*/
 
     public SquareColor[][] getPolySquares() {
         return poly.getPolySquares();
@@ -76,9 +77,9 @@ public class Board {
         }
     }
 
-    public void update() {
+    /*public void update() {
         notifyListeners();
-    }
+    }*/
 
     public void tick() {
         if (poly != null && (!reachedBottom() && !collidesUnder())) {
@@ -190,6 +191,7 @@ public class Board {
        return full;
     }
 
+    // Check every row and if its full, replace it (and the rows above it) with the one above
     private void removeFullRow() {
         for (int i = rows - 1; i > 0; i--) {
             if (fullRow(i)) {

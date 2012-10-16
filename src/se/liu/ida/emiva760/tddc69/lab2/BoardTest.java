@@ -23,7 +23,6 @@ public class BoardTest {
         final Timer clockTimer = new Timer(300, doOneStep);
         clockTimer.setCoalesce(true);
         clockTimer.start();
-        clockTimer.setLogTimers(true);
     }
 
     // Board functions:
